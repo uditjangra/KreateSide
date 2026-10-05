@@ -106,6 +106,17 @@ const openEnquiryDialog = () => {
   window.setTimeout(() => projectForm?.querySelector('input[name="name"]')?.focus(), 50);
 };
 document.querySelectorAll('.project-trigger').forEach((trigger) => trigger.addEventListener('click', openEnquiryDialog));
+document.querySelectorAll('.service-card[data-service]').forEach((card) => {
+  const chooseService = () => {
+    openEnquiryDialog();
+    const serviceField = projectForm?.querySelector('select[name="service"]');
+    if (serviceField) serviceField.value = card.dataset.service;
+  };
+  card.addEventListener('click', chooseService);
+  card.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseService(); }
+  });
+});
 document.querySelector('.close-enquiry-dialog')?.addEventListener('click', () => enquiryDialog?.close());
 enquiryDialog?.addEventListener('click', (event) => { if (event.target === enquiryDialog) enquiryDialog.close(); });
 projectForm?.addEventListener('submit', (event) => {
