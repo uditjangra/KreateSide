@@ -78,8 +78,20 @@ if (tray) {
     const thumbnailUrl = getThumbnailUrl(videoLibrary[button.dataset.videoIndex]);
     if (thumbnailUrl) button.insertAdjacentHTML('afterbegin', `<img class="video-card-thumbnail" src="${thumbnailUrl}" alt="" onerror="if(this.src.includes('maxresdefault'))this.src=this.src.replace('maxresdefault','hqdefault');else this.hidden=true">`);
   });
+ }
+const videoCallout = document.querySelector('.video-callout');
+const videoShowcase = document.querySelector('.video-showcase');
+const firstVideoButton = tray?.querySelector('[data-video-index="0"]');
+if (videoCallout && videoShowcase) {
+  const videoCalloutObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    videoCallout.classList.add('is-visible');
+    videoCalloutObserver.disconnect();
+  }, { threshold: 0.35 });
+  videoCalloutObserver.observe(videoShowcase);
 }
-document.querySelector('.carousel-prev')?.addEventListener('click', () => tray?.scrollBy({ left: -tray.clientWidth * .8, behavior: 'smooth' }));
+firstVideoButton?.addEventListener('click', () => videoCallout?.classList.add('is-dismissed'), { once: true });
+ document.querySelector('.carousel-prev')?.addEventListener('click', () => tray?.scrollBy({ left: -tray.clientWidth * .8, behavior: 'smooth' }));
 document.querySelector('.carousel-next')?.addEventListener('click', () => tray?.scrollBy({ left: tray.clientWidth * .8, behavior: 'smooth' }));
 document.querySelector('.close-video-dialog')?.addEventListener('click', () => videoDialog?.close());
 videoDialog?.addEventListener('close', () => { if (videoFrameWrap) videoFrameWrap.innerHTML = ''; });
