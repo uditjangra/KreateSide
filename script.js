@@ -91,7 +91,8 @@ if (videoCallout && videoShowcase) {
   videoCalloutObserver.observe(videoShowcase);
 }
 firstVideoButton?.addEventListener('click', () => videoCallout?.classList.add('is-dismissed'), { once: true });
- document.querySelector('.carousel-prev')?.addEventListener('click', () => tray?.scrollBy({ left: -tray.clientWidth * .8, behavior: 'smooth' }));
+videoCallout?.querySelector('.video-callout-close')?.addEventListener('click', () => videoCallout.classList.add('is-dismissed'));
+document.querySelector('.carousel-prev')?.addEventListener('click', () => tray?.scrollBy({ left: -tray.clientWidth * .8, behavior: 'smooth' }));
 document.querySelector('.carousel-next')?.addEventListener('click', () => tray?.scrollBy({ left: tray.clientWidth * .8, behavior: 'smooth' }));
 document.querySelector('.close-video-dialog')?.addEventListener('click', () => videoDialog?.close());
 videoDialog?.addEventListener('close', () => { if (videoFrameWrap) videoFrameWrap.innerHTML = ''; });
