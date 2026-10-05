@@ -1,4 +1,10 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "script.js", "use": "@vercel/static" }
+  ],
   "rewrites": [
     { "source": "/portfolio", "destination": "/portfolio.html" },
     { "source": "/portfolio/", "destination": "/portfolio.html" }
