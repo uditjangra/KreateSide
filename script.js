@@ -18,7 +18,7 @@ const dialogTitle = dialog?.querySelector('h2');
 const dialogResult = dialog?.querySelector('.dialog-result');
 const dialogArt = dialog?.querySelector('.dialog-art');
 const projectDetails = {
-  money: { title: '@MoneyWithSwabi', result: '8M+ Instagram reach in one month', color: '#101a42' },
+  money: { title: '@MoneyWithSwabi', result: '7M+ Instagram views in one month', color: '#101a42' },
   tn: { title: '@TNStudioz', result: '60K+ YouTube long-form views', color: '#d6e3f8' },
   astro: { title: '@Astrology', result: '200K+ views in one month', color: '#1557ff' }
 };
